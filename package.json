@@ -1,7 +1,7 @@
 {
   "name": "mongoose_skeleton",
   "version": "1.0.0",
-  "description": "",
+  "description": "App that tracks workout events",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,11 +9,24 @@
     "watch": "nodemon server.js",
     "seed": "node seeders/seed.js"
   },
-  "author": "",
+  "author": "Albert Chen",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.3",
+    "mongojs": "^3.1.0",
     "mongoose": "^5.3.16",
     "morgan": "^1.9.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chenalbe/Workout-Tracker.git"
+  },
+  "keywords": [
+    "workout"
+  ],
+  "bugs": {
+    "url": "https://github.com/chenalbe/Workout-Tracker/issues"
+  },
+  "homepage": "https://github.com/chenalbe/Workout-Tracker#readme"
 }
