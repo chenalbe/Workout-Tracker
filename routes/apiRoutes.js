@@ -1,25 +1,27 @@
 const router = require("express").Router();
-const db = require("../models");
+const db = require("../models/workout.js");
 
 //get workout records from DB
 router.get("/api/workouts", (req, res) => {
-    db.Workout.find({})
-    .then(data => {
-      res.json(data);
+    db.find({})
+    .then(dbWorkout => {
+      res.json(dbWorkout);
       })
     .catch(err => {
-              res.json(err);
-          });
+      res.json(err);
+      console.log(err);
+      });
   });
   
   // create workout plan
   router.post("/api/workouts", (req, res)=>{
-    db.Workout.create({})
-    .then(data=>{
-      res.json(data);
+    db.create({})
+    .then(dbWorkout=>{
+      res.json(dbWorkout);
     })
     .catch(err =>{
-      res.status(400).json(err);
+      res.json(err);
+      console.log(err);
     });
   });
   
@@ -27,26 +29,27 @@ router.get("/api/workouts", (req, res) => {
   
   //retreive workout plans for stats
   router.get("/api/workouts/range", (req, res)=>{
-    db.Workout.find({}).then(data=>{
-      res.json(data);
+    db.find({}).then(dbWorkout=>{
+      res.json(dbWorkout);
     })
     .catch(err=>{
       res.json(err);
+      console.log(err);
     })
   });
   
   //add exercie to the workout plan
-  router.put("/api/workouts/:id", (req, res)=>{
-    db.Workout.findByIdAndUpdate(
-      {
-        _id:mongojs.ObjectId(req.params.id)},
-        {$push:{exercises:req.body}}, 
+  router.put("/api/workouts/:id", ({body, params}, res)=>{
+    db.findByIdAndUpdate(
+        params.id,
+        {$push:{exercises:body}}, 
         {new:true})
-        .then(data=>{
-          res.json(data);
+        .then(dbWorkout=>{
+          res.json(dbWorkout);
         })
         .catch(err=>{
-          res.status(400).json(err);
+          res.json(err);
+          console.log(err);
         });
   });
 
